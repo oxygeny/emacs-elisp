@@ -20,9 +20,9 @@
 (setq display-line-number-format "%4d| ")
 (add-hook 'after-init-hook 'session-initialize)
 
-                                        ;color-theme
-                                        ;(require 'zenburn)
-;(color-theme-dark-blue); load my theme
+;color-theme
+(if (display-graphic-p) 
+    (color-theme-dark-blue)); load my theme
 
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
                                   global-semanticdb-minor-mode
