@@ -1,41 +1,31 @@
+;;;;;;;;;;     auto-complete settings
+(add-to-list 'load-path (concat elisp-path "auto-complete"))
+(require 'auto-complete-config)
 
-(add-to-list 'load-path (concat elisp-path "elib-1.0"))			;;Elib - The Emacs Lisp Library
-(add-to-list 'load-path (concat elisp-path "ecb-2.40"))			;;Emacs Code Browser
-(add-to-list 'load-path (concat elisp-path "auto-complete"))		;;auto-complete
+(add-to-list 'ac-dictionary-directories (concat elisp-path "auto-complete/ac-dict"))
+(ac-config-default)
+;;;;;;;;;;     end of auto-complete
 
-(require 'winring)
-(require 'display-line-number)
-(require 'browse-kill-ring)
-(require 'anything)							;;相关查找，可以查找Buffer、历史文件、历史命令
+;;;;;;;;;;     session setting
 (require 'session)
-(require 'color-theme)
-(require 'yasnippet-bundle)
-(require 'ecb-autoloads)
-(require 'eassist)							;;EmacsAssist, C/C++/Java/Python/ELisp method/function navigator.
-(require 'css-mode)
-(require 'php-mode)
-
-
-(winring-initialize)
-(setq display-line-number-format "%4d| ")
 (add-hook 'after-init-hook 'session-initialize)
+;;;;;;;;;;     end of session
 
-;color-theme
-(if (display-graphic-p) 
-    (color-theme-dark-blue)); load my theme
+;;;;;;;;;;     winring settings
+;; (require 'winring)
+;; (winring-initialize)
+;;;;;;;;;;     end of winring
 
-(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
-                                  global-semanticdb-minor-mode
-                                  global-semantic-idle-summary-mode
-                                  global-semantic-mru-bookmark-mode))
-(semantic-mode 1)
+;;;;;;;;;;     anything settings
+(require 'anything)
+;;;;;;;;;;     end of anything
 
-(load "auto-complete-settings")
+;;;;;;;;;;     browse-kill-ring
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+;;;;;;;;;;     end of browse-kill-ring
 
-
-
-(add-to-list 'auto-mode-alist (cons "\\.css\\'" 'css-mode))
-
+;;;;;;;;;;     function define
 (defun my-c-mode-common-hook ()
   (define-key c-mode-base-map (kbd "M-o") 'eassist-switch-h-cpp)
   (define-key c-mode-base-map (kbd "C-c m") 'eassist-list-methods))
@@ -70,32 +60,3 @@
 (defun switch-to-previous-buffer ()
   (interactive)
   (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list))))
-
-;;文件格式转换
-(defun dos-unix () (interactive)
-  (goto-char (point-min))
-  (while (search-forward "\r" nil t) (replace-match "")))
-(defun unix-dos () (interactive)
-  (goto-char (point-min))
-  (while (search-forward "\n" nil t) (replace-match "\r\n")))
-
-
-                                        ;wxWidgets的样式调整示例代码
-(require 'cc-mode)
-(add-to-list  'c++-font-lock-extra-types
-              "\\bwx[A-Z][a-z][a-zA-Z]*?\\b")
-(add-to-list  'c++-font-lock-extra-types
-              "\\bC[A-Z][a-z][a-zA-Z]*?\\b")
-(defun c-wx-lineup-topmost-intro-cont (langelem)
-  (save-excursion
-    (beginning-of-line)
-    (if (or (re-search-forward "EVT_" (line-end-position) t)
-            (re-search-forward "ON_" (line-end-position) t))
-        'c-basic-offset
-      (c-lineup-topmost-intro-cont langelem))))
-(defun c-wx-offset-hook ()
-  (c-set-style "stroustrup")
-  (c-set-offset 'topmost-intro-cont 'c-wx-lineup-topmost-intro-cont))
-
-(add-hook 'c++-mode-hook 'c-wx-offset-hook)
-(add-hook 'c-mode-hook 'c-wx-offset-hook)
