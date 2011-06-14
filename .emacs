@@ -31,12 +31,12 @@
 
 (delete-selection-mode t)
 (global-hl-line-mode t)
-(show-paren-mode 1);;括号配对
+(show-paren-mode t);;括号配对
 (setq-default truncate-lines t)
 (ido-mode t)
 (column-number-mode t)
-(global-font-lock-mode 1)
-(blink-cursor-mode 0);;光标不闪
+(global-font-lock-mode t)
+(blink-cursor-mode nil);;光标不闪
 (icomplete-mode t)
 
 

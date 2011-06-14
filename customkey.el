@@ -1,14 +1,14 @@
-;;±ğÃûºÍ¿ì½İ¼ü
+;;åˆ«åå’Œå¿«æ·é”®
 (global-set-key "\M- " 'set-mark-command)
 (global-set-key "\C-x " (quote set-mark-command))
-(global-set-key "\C-xk" #'(lambda () (interactive) (kill-buffer (current-buffer))));ÃëÉ±buffer
-(global-set-key [(control down)] #'(lambda () (interactive) (scroll-up 1))) ;µ¥ĞĞ¾í¶¯
+(global-set-key "\C-xk" #'(lambda () (interactive) (kill-buffer (current-buffer))));ç§’æ€buffer
+(global-set-key [(control down)] #'(lambda () (interactive) (scroll-up 1))) ;å•è¡Œå·åŠ¨
 (global-set-key [(control up)] #'(lambda () (interactive) (scroll-down 1)))
 
 (global-set-key "\C-xp" #'(lambda () (interactive) (other-window -1)))
 
 (global-set-key [insert] 'ignore)
-(global-set-key [(control ?x) insert] 'overwrite-mode) ;;²»Òªinsert/overwrite
+(global-set-key [(control ?x) insert] 'overwrite-mode) ;;ä¸è¦insert/overwrite
 
 (global-unset-key "\C-xf")
 (global-set-key "\C-x\C-b" 'ibuffer)
@@ -21,7 +21,7 @@
 (global-set-key (kbd "C-c l") (quote copy-line))
 (global-set-key (kbd "C-c p") (quote copy-paragraph))
 
-; ´ÓeemacsÖĞµÃÀ´
+; ä»eemacsä¸­å¾—æ¥
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 (defalias 'llm 'longlines-mode)
@@ -31,4 +31,5 @@
 (defalias 'rstr 'replace-string)
 (defalias 'ptm 'pop-to-mark-command)
 (defalias 'emacs 'open)
-(defalias 'yes-or-no-p 'y-or-n-p) ;±ğ´ğµÃÄÇÃ´³¤
+(defalias 'yes-or-no-p 'y-or-n-p) ;åˆ«ç­”å¾—é‚£ä¹ˆé•¿
+(defalias 'gl 'goto-line)
