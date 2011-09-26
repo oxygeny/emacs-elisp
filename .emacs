@@ -29,6 +29,13 @@
 (setq indent-tabs-mode nil)
 (setq vc-handled-backends nil) ; disable version control
 
+(setq-default indent-tabs-mode nil) ; save space instead of tabs to file
+;;; C/C++ Programming Enviroment
+(setq c-default-style
+      '((java-mode . "java") (awk-mode . "awk") (other . "linux")))
+;下面调整Tab键缩进为4个空格
+(setq c-basic-offset 4)
+
 (delete-selection-mode t)
 (global-hl-line-mode t)
 (show-paren-mode t);;括号配对
