@@ -5,54 +5,78 @@
                                                  ; on windows.
 ;(server-start)
 
-(require 'generic-x);;for hightlight files like ini,batch
-(require 'uniquify);;The library uniquify overrides Emacs' default mechanism for making buffer names unique (using suffixes like <2> , <3> etc.)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-
-(setq backup-directory-alist '((".*" . "~/.saves")))
-(setq auto-save-file-name-transforms `((".*" "~/.saves/\\2" t)))
-
-(setq inhibit-startup-message t) ;no starup message
-(setq default-tab-width 4) 
-(setq default-major-mode 'text-mode)
-
-;(setq-default cursor-type 'bar)
-
-(add-to-list 'auto-mode-alist (cons "\\.h\\'" 'c++-mode))
-
-;;解决复制粘帖
-(setq mouse-drag-copy-region nil)  ; stops selection with a mouse being immediately injected to the kill ring
-(setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection
-(setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
-
-(setq compilation-scroll-output t)
-(setq indent-tabs-mode nil)
-(setq vc-handled-backends nil) ; disable version control
-
-(setq-default indent-tabs-mode nil) ; save space instead of tabs to file
-;;; C/C++ Programming Enviroment
-(setq c-default-style
-      '((java-mode . "java") (awk-mode . "awk") (other . "linux")))
-;下面调整Tab键缩进为4个空格
-(setq c-basic-offset 4)
-
-(delete-selection-mode t)
-(global-hl-line-mode t)
-(show-paren-mode t);;括号配对
-(setq-default truncate-lines t)
-(ido-mode t)
-(column-number-mode t)
-(global-font-lock-mode t)
-(blink-cursor-mode nil);;光标不闪
-(icomplete-mode t)
-
-
+;;System Settings
 ;customize path
 (setq elisp-path "~/.emacs.d/elisp/")
 (add-to-list 'load-path elisp-path)
 
-(load "elisp")
-(load "customkey")
+;make buffers' name unique, add path info to name
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+;backup files to specific directory
+(setq backup-directory-alist '((".*" . "~/.saves")))
+(setq auto-save-file-name-transforms `((".*" "~/.saves/\\2" t)))
+
+;no starup message
+(setq inhibit-startup-message t)
+
+;fix copy/paste problem
+; stops selection with a mouse being immediately injected to the kill ring
+; stops killing/yanking interacting with primary X11 selection
+; makes killing/yanking interact with clipboard X11 selection
+(setq mouse-drag-copy-region nil)
+(setq x-select-enable-primary nil)
+(setq x-select-enable-clipboard t)
+
+(ido-mode t)
+
+(column-number-mode t)
+
+;disable version control
+(setq vc-handled-backends nil)
+
+
+;;Display Settings
+;hightlight files like ini,batch
+(require 'generic-x)
+
+;default in text-mode
+(setq default-major-mode 'text-mode)
+
+;default tab-width
+(setq-default tab-width 4)
+
+(global-hl-line-mode t)
+
+(setq-default truncate-lines t)
+
+;括号配对
+(show-paren-mode t)
+
+(global-font-lock-mode t)
+
+;光标不闪
+(blink-cursor-mode nil)
+
+
+;;Edit Settings
+;indent using space
+(setq-default indent-tabs-mode nil)
+
+;enable del selection text
+(delete-selection-mode t)
+
+(icomplete-mode t)
+
+
 
 ;load X window special setting
 (if (display-graphic-p) (load "xlisp"))
+
+
+
+
+(load "develop")
+(load "elisp")
+(load "customkey")
