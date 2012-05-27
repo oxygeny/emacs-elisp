@@ -14,7 +14,8 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;backup files to specific directory
+;backup files to specific directory, keep five last versions
+(setq version-control t)
 (setq backup-directory-alist '((".*" . "~/.saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.saves/\\2" t)))
 

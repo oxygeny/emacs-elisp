@@ -6,7 +6,7 @@
 ;; Maintainer: Nick Hurley <hurley@cis.ohio-state.edu>
 ;; Created: 7 Apr 2001
 ;; Version: 1.3a (CVS)
-;; X-RCS: $Id: browse-kill-ring.el,v 1.2 2008/10/29 00:23:00 hurley Exp $
+;; X-RCS: $Id: browse-kill-ring.el,v 1.3 2009-09-03 14:41:25 psg Exp $
 ;; URL: http://freedom.cis.ohio-state.edu/~hurley/
 ;; URL-ja: http://www.fan.gr.jp/~ring/doc/browse-kill-ring.html
 ;; Keywords: convenience
@@ -751,15 +751,6 @@ entry."
     (t
      (funcall browse-kill-ring-quit-action))))
 
-(defun toggle-browse-kill-ring-display-style ()
-  "Toggle browse-kill-ring-display-style between `separated' and `one-line'."
-  (interactive)
-  (setq browse-kill-ring-display-style (case browse-kill-ring-display-style
-                                         (separated 'one-line)
-                                         (otherwise 'separated)))
-  (browse-kill-ring-update)
-  (message "browse-kill-ring-display-style is now %s" browse-kill-ring-display-style))
-
 (put 'browse-kill-ring-mode 'mode-class 'special)
 (define-derived-mode browse-kill-ring-mode fundamental-mode
   "Kill Ring"
@@ -771,7 +762,6 @@ You most likely do not want to call `browse-kill-ring-mode' directly; use
   (set (make-local-variable 'font-lock-defaults)
        '(nil t nil nil nil
 	     (font-lock-fontify-region-function . browse-kill-ring-fontify-region)))
-  (define-key browse-kill-ring-mode-map (kbd "t") 'toggle-browse-kill-ring-display-style)
   (define-key browse-kill-ring-mode-map (kbd "q") 'browse-kill-ring-quit)
   (define-key browse-kill-ring-mode-map (kbd "U") 'browse-kill-ring-undo-other-window)
   (define-key browse-kill-ring-mode-map (kbd "d") 'browse-kill-ring-delete)
