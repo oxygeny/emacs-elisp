@@ -34,6 +34,9 @@
 
 (column-number-mode t)
 
+;don't need menu-bar
+(menu-bar-mode -1)
+
 ;disable version control
 (setq vc-handled-backends nil)
 
