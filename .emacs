@@ -51,7 +51,7 @@
 ;default tab-width
 (setq-default tab-width 4)
 
-(global-hl-line-mode t)
+;(global-hl-line-mode t)
 
 (setq-default truncate-lines t)
 
@@ -76,9 +76,7 @@
 
 
 ;load X window special setting
-(if (display-graphic-p) (load "xlisp"))
-
-
+(if (display-graphic-p) (load "xlisp") (load-theme 'wombat))
 
 
 (load "develop")
