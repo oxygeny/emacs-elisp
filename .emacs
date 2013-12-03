@@ -22,14 +22,6 @@
 ;no starup message
 (setq inhibit-startup-message t)
 
-;fix copy/paste problem
-; stops selection with a mouse being immediately injected to the kill ring
-; stops killing/yanking interacting with primary X11 selection
-; makes killing/yanking interact with clipboard X11 selection
-(setq mouse-drag-copy-region nil)
-(setq x-select-enable-primary nil)
-(setq x-select-enable-clipboard t)
-
 (ido-mode t)
 
 (column-number-mode t)
@@ -58,12 +50,6 @@
 ;括号配对
 (show-paren-mode t)
 
-(global-font-lock-mode t)
-
-;光标不闪
-(blink-cursor-mode nil)
-
-
 ;;Edit Settings
 ;indent using space
 (setq-default indent-tabs-mode nil)
@@ -74,10 +60,8 @@
 (icomplete-mode t)
 
 
-
 ;load X window special setting
 (if (display-graphic-p) (load "xlisp") (load-theme 'wombat))
-
 
 (load "develop")
 (load "elisp")
